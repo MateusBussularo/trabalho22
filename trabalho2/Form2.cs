@@ -46,7 +46,7 @@ namespace trabalho2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario(maskedTextBox1.Text, textBox1.Text);
+            Usuario usuario = new Usuario(maskedTextBox1.Text, trabalho2.Senha.CalculateMD5Hash(textBox1.Text));
             UsuarioDAO usuarioDAO = new UsuarioDAO();
 
             if (usuarioDAO.Loginuser(usuario))

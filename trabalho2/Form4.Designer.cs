@@ -44,7 +44,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(70, 235);
+            this.button1.Location = new System.Drawing.Point(110, 235);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 14;
@@ -55,7 +55,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(131, 74);
+            this.label1.Location = new System.Drawing.Point(141, 78);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 13);
             this.label1.TabIndex = 13;
@@ -84,7 +84,7 @@
             this.CPF,
             this.Senha});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(347, 235);
+            this.listView1.Location = new System.Drawing.Point(480, 47);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(308, 97);
             this.listView1.TabIndex = 9;
@@ -125,7 +125,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(202, 235);
+            this.button2.Location = new System.Drawing.Point(191, 235);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 17;
@@ -135,7 +135,7 @@
             // 
             // maskedTextBox1
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(134, 105);
+            this.maskedTextBox1.Location = new System.Drawing.Point(134, 109);
             this.maskedTextBox1.Mask = "999,999,999-99";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);

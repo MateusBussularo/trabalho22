@@ -42,16 +42,24 @@ namespace trabalho2
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario("CPF",  "senha");
+            string cpf = maskedTextBox1.Text;
+            if (new CPFValidator().IsValid(cpf))
+            {
+                Usuario usuario = new Usuario("CPF", "senha");
 
-            usuario.prontuario = Int32.Parse(textBox3.Text);
-            usuario.Cpf = maskedTextBox1.Text;
-            usuario.Senha = textBox2.Text;
+                usuario.prontuario = Int32.Parse(textBox3.Text);
+                usuario.Cpf = maskedTextBox1.Text;
+                usuario.Senha = trabalho2.Senha.CalculateMD5Hash(textBox2.Text);
 
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.UpdateUsuario(usuario);
+                UsuarioDAO usuarioDAO = new UsuarioDAO();
+                usuarioDAO.UpdateUsuario(usuario);
 
-            UpdateListView();
+                UpdateListView();
+            }
+            else
+            {
+                MessageBox.Show("CPF inválido");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

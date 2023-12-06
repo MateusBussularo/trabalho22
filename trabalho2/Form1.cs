@@ -41,6 +41,7 @@ namespace trabalho2
         private void Form1_Load(object sender, EventArgs e)
         {
             UpdateListView();
+            pictureBox1.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -69,6 +70,16 @@ namespace trabalho2
         {
             Form2 fomr = new Form2();
             fomr.Show();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            pictureBox1.Show();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

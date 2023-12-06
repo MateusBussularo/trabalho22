@@ -51,6 +51,44 @@ namespace trabalho2
             }
 
         }
+        public List<Usuario> SelectUsuario1()
+        {
+            Connection conn = new Connection();
+            SqlCommand sqlCom = new SqlCommand();
+
+            sqlCom.Connection = conn.ReturnConnection();
+            sqlCom.CommandText = "SELECT * FROM Endereco";
+            List<Usuario> usuarios = new List<Usuario>();
+            try
+            {
+                SqlDataReader dr = sqlCom.ExecuteReader();
+
+                //Enquanto for possível continuar a leitura das linhas que foram retornadas na consulta, execute.
+                while (dr.Read())
+                {
+                    Usuario objeto = new Usuario(
+                    (int)dr["id"],
+                    (string)dr["Rua"],
+                    (string)dr["Bairro"],
+                    (string)dr["Numero"],
+                    (string)dr["CEP"]
+                    );
+                    usuarios.Add(objeto);
+
+                }
+                dr.Close();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro na leitura dos dados\n"
+                    + err.Message);
+            }
+            finally
+            {
+                conn.CloseConnection();
+            }
+            return usuarios;
+        }
         public void UpdateUsuario(Usuario usuario)
         {
             Connection connection = new Connection();
@@ -71,6 +109,28 @@ namespace trabalho2
                MessageBoxButtons.OK,
                MessageBoxIcon.Information);
         }
+        public void UpdateUsuario1(Usuario usuario)
+        {
+            Connection connection = new Connection();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"UPDATE Endereco SET
+               Rua = @Rua,
+               Bairro = @Bairro,
+               Numero = @Numero,
+               CEP = @CEP
+               WHERE Id = @Id";
+            sqlCommand.Parameters.AddWithValue("@Rua", usuario.rua);
+            sqlCommand.Parameters.AddWithValue("@Bairro", usuario.Bairro);
+            sqlCommand.Parameters.AddWithValue("@Numero", usuario.Numero);
+            sqlCommand.Parameters.AddWithValue("@CEP", usuario.cep);
+            sqlCommand.Parameters.AddWithValue("@Id", usuario.prontuario);
+
+
+            sqlCommand.ExecuteNonQuery();
+
+        }
 
         public void InsertUsuario(Usuario usuario)
         {
@@ -88,6 +148,22 @@ namespace trabalho2
                 "AVISO",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
+        }
+        public void InsertUsuario1(Usuario usuario)
+        {
+            Connection connection = new Connection();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"INSERT INTO Endereco VALUES(@Rua, @Bairro, @Numero, @CEP)";
+
+            sqlCommand.Parameters.AddWithValue("@Rua", usuario.rua);
+            sqlCommand.Parameters.AddWithValue("@Bairro", usuario.Bairro);
+            sqlCommand.Parameters.AddWithValue("@Numero", usuario.Numero);
+            sqlCommand.Parameters.AddWithValue("@CEP", usuario.cep);
+
+            sqlCommand.ExecuteNonQuery();
+
         }
 
         public void DeletUsuario(int Id)
@@ -114,6 +190,34 @@ namespace trabalho2
                 connection.CloseConnection();
             }
         }
+        public void excluirUsuario1(int Id)
+        {
+            Connection connection = new Connection();
+            SqlCommand sqlCommand = new SqlCommand();
+
+            sqlCommand.Connection = connection.ReturnConnection();
+            sqlCommand.CommandText = @"DELETE FROM Endereco 
+               WHERE Id = @Id";
+
+            sqlCommand.Parameters.AddWithValue("@Id", Id);
+
+
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception err)
+            {
+                throw new Exception("Erro: Problemas ao excluir usuário no banco.\n" + err.Message);
+            }
+            finally
+            {
+                connection.CloseConnection();
+
+            }
+
+
+        }
 
         public bool Loginuser(Usuario login)
         {
@@ -125,10 +229,12 @@ namespace trabalho2
             sqlCommand.Parameters.AddWithValue("@cpf", login.Cpf);
             sqlCommand.Parameters.AddWithValue("@senha", login.Senha);
 
-            int count = (int)sqlCommand.ExecuteScalar();
+            int userId = Convert.ToInt32(sqlCommand.ExecuteScalar());
 
-            if (count > 0)
+            if (userId > 0)
             {
+                Form5 Form5 = new Form5(userId);
+                Form5.Show();
                 return true;
             }
             else

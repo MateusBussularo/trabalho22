@@ -71,9 +71,9 @@
             this.CPF,
             this.Senha});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(442, 164);
+            this.listView1.Location = new System.Drawing.Point(451, 140);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(308, 97);
+            this.listView1.Size = new System.Drawing.Size(308, 191);
             this.listView1.TabIndex = 7;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -97,9 +97,9 @@
             // 
             this.button1.Location = new System.Drawing.Point(195, 318);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(97, 23);
             this.button1.TabIndex = 8;
-            this.button1.Text = "button1";
+            this.button1.Text = "Logar";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
